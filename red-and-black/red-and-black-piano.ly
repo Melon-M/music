@@ -265,7 +265,8 @@ verseTwo-upper = \relative b' {
             \tuplet 3/2 { g-5 e-4 c-2 }
             \tuplet 3/2 { e-4 g-5 e-4 }
             |
-            <fis d ais fis>1)
+            <fis d ais fis>2)
+            s2
             |
             % Phrase 2
             \once \override Rest.staff-position = #-2
@@ -367,7 +368,7 @@ verseTwo-lower = \relative b, {
             \voiceOne
             \once \stemDown
             \tuplet 3/2 { 
-                \tweak Parentheses.font-size -2 \parenthesize e'4_(
+                \tweak Parentheses.font-size -2 \parenthesize fis'4_(
                 % <\tweak Parentheses.font-size -2 \parenthesize fis' 
                 % ais, fis>4
                 <e e,> <cis cis,> 
@@ -377,7 +378,8 @@ verseTwo-lower = \relative b, {
 
         \new Voice {
             \voiceTwo
-            <d fis, d>1
+            <d fis,>2
+            s2
         }
 
     >>
@@ -386,7 +388,7 @@ verseTwo-lower = \relative b, {
     <fis d fis,>2. <a cis, a>4
     |
     <gis eis d gis,>2
-    \tuplet 3/2 { <d d,>4 <e e,> <fis~ fis,~> }
+    \tuplet 3/2 { <d d,>4 <e e,> <fis~ fis,_~> }
     |
     <fis fis,>2
     r8.
