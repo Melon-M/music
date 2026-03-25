@@ -98,20 +98,25 @@ verseOneBeforeRepeat-upper = \relative b' {
     >>
     \oneVoice
     r8.
-    <eis cis eis,>16
+    <eis cis b eis,>16
     r16
-    <fis cis fis,>8.
-    |
-    r16 <g c,~ g~>2.
-    <d c g>8.
+    <fis cis ais fis>8.
     |
     <<
         {
             \voiceOne
-            <fis fis,>1
+            r16
+            \once \stemDown
+            <g~ c, g_~>2.
+            \once \stemDown
+            <g d~ b~ g>8.
+            |
+            <fis d b fis>1
         }
         \new Voice {
             \voiceTwo
+            s1 
+            |
             \tuplet 3/2 { b,2^( b4 }
             \tuplet 3/2 { c4 d c) }
         }
@@ -207,22 +212,34 @@ verseOneAfterRepeat-lower = \relative b, {
     ais,16 b16 
     <cis cis,>8 <cis ais cis,>4 <cis ais cis,>8
     |
-    \tuplet 3/2 {  
-        \once \override Script.direction = #DOWN 
-        <e e,>4-. 
-        <e e,>4 
-        \once \override Script.direction = #DOWN 
-        <e e,>4-. 
-    }
-    \tuplet 3/2 { 
-        \once \override Script.direction = #DOWN 
-        <fis cis fis,>4-. 
-        <fis d fis,>4 
-        \once \override Script.direction = #DOWN 
-        <fis cis fis,>4-.
-    }
+    <<
+      {
+        \voiceOne
+        \tuplet 3/2 {  
+          \once \override Script.direction = #DOWN 
+          <e b>4
+          <e c>4 
+          \once \override Script.direction = #DOWN 
+          <e cis>4 
+        }
+        \tuplet 3/2 { 
+            \once \override Script.direction = #DOWN 
+            <fis cis>4
+            <fis d>4 
+            \once \override Script.direction = #DOWN 
+            <fis cis>4
+        }
+      }
+      {
+        \new Voice {
+          \voiceTwo
+          e,2 fis
+        }
+      }
+  >>
+
     |
-    <b, fis b,>4-. <b fis b,>8. <b fis b,>16
+    <b fis b,>4-. <b fis b,>8. <b fis b,>16
     \once \override Rest.Y-offset = 0
     r8 
     <fis' fis,>16-. <e e,>16-. 
@@ -248,7 +265,7 @@ verseTwo-upper = \relative b' {
             \tuplet 3/2 { g-5 e-4 c-2 }
             \tuplet 3/2 { e-4 g-5 e-4 }
             |
-            <fis cis ais fis>1)
+            <fis d ais fis>1)
             |
             % Phrase 2
             \once \override Rest.staff-position = #-2
@@ -262,7 +279,7 @@ verseTwo-upper = \relative b' {
             |
             \stemDown
             %%%%% CHANGED: slight harmony and voicing changes here %%%%%
-            \tuplet 3/2 { <eis d gis,> <b' d,~ b>\arpeggio-- <a d, a> }
+            \tuplet 3/2 { <eis d gis,> <b' eis, d_~ b>\arpeggio-- <a d, a> }
             \tuplet 3/2 { <eis-- d b eis,> <e b e,> <d d,> }
             |
             <fis d b fis>2_\markup{ \italic "m.s." }
@@ -330,15 +347,41 @@ verseTwo-lower = \relative b, {
     <ais fis e ais,>2 
     \tuplet 3/2 { <cis ais fis cis>2 <cis cis,>4 }
     |
-    <e e,>4. <c c,> <e e,>4
+    % <e~ b g~ e~>4. <e c g e>8 
+    <<
+        {
+            \voiceOne
+            b4. c8
+            \tuplet 3/2 { cis4 e <cis g> }
+        }
+        
+        \new Voice {
+            \voiceTwo
+            <e g, e>2
+            <e g, e>
+        }
+    >>
     |
-    \once \stemDown
-    \tuplet 3/2 { 
-        <\tweak Parentheses.font-size -2 \parenthesize fis' 
-        ais, fis>4_( <e e,> <cis cis,> 
-    }
-    \tuplet 3/2 { <b g d b> <g g,> <e e,>) }
+    <<
+        {
+            \voiceOne
+            \once \stemDown
+            \tuplet 3/2 { 
+                \tweak Parentheses.font-size -2 \parenthesize e'4_(
+                % <\tweak Parentheses.font-size -2 \parenthesize fis' 
+                % ais, fis>4
+                <e e,> <cis cis,> 
+            }
+            \tuplet 3/2 { <b g d b> <g g,> <e e,>) }
+        }
 
+        \new Voice {
+            \voiceTwo
+            <d fis, d>1
+        }
+
+    >>
+    |
     % Phrase 2
     <fis d fis,>2. <a cis, a>4
     |
@@ -389,7 +432,7 @@ chorusOne-upper = \relative b' {
     r8
     |
     % Phrase 2
-    <b, b,>4 <fis' b, fis>
+    <b, d, b>4 <fis' b, fis>
     \tuplet 3/2 { <eis b eis,>4 <cis g cis,> <d b d,> }
     |
     \tuplet 3/2 { <e a,~ e> <fis a,~ fis> <e a, e> }
@@ -517,7 +560,7 @@ interludeOne-lower = \relative b,, {
             \tuplet 3/2 { fis'-1 b-3 d-1 }
             \override TupletNumber.stencil = ##f
             \tuplet 3/2 { cis-2 b-3 g-1 }
-            \tuplet 3/2 { e-3 cis-3 bes-4 }
+            \tuplet 3/2 { e-2 cis-3 bes-4 }
             |
             \tuplet 3/2 { <cis, cis,> a'-5 cis-3 }
             \tuplet 3/2 { e-2 a-1 cis-2 }
