@@ -265,7 +265,7 @@ verseTwo-upper = \relative b' {
             \tuplet 3/2 { g-5 e-4 c-2 }
             \tuplet 3/2 { e-4 g-5 e-4 }
             |
-            <fis d ais fis>2)
+            <fis e ais, fis>2)
             s2
             |
             % Phrase 2
@@ -351,22 +351,31 @@ verseTwo-lower = \relative b, {
     % <e~ b g~ e~>4. <e c g e>8 
     <<
         {
-            \voiceOne
-            b4. c8
-            \tuplet 3/2 { cis4 e <cis g> }
+            <<
+              {
+                \voiceOne
+                \once \override NoteColumn.force-hshift = #0.5
+                b4. 
+                c8
+                \tuplet 3/2 { cis'!4 e cis }
+              }
+              \new Voice {
+                \voiceFour
+                s2
+                \tuplet 3/2 { <g e>2 g4 } 
+              }
+            >>
         }
         
         \new Voice {
             \voiceTwo
-            <e g, e>2
-            <e g, e>
+            <e g, e>1
         }
     >>
     |
     <<
         {
             \voiceOne
-            \once \stemDown
             \tuplet 3/2 { 
                 \tweak Parentheses.font-size -2 \parenthesize fis'4_(
                 % <\tweak Parentheses.font-size -2 \parenthesize fis' 
@@ -378,7 +387,7 @@ verseTwo-lower = \relative b, {
 
         \new Voice {
             \voiceTwo
-            <d fis,>2
+            <d' ais fis>2
             s2
         }
 
