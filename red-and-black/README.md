@@ -6,6 +6,9 @@ Contact me using GitHub Issues if you believe there may be copyright violations 
 
 ## Change logs
 
+### 2026-04-04
+Major update for the second chorus because I actually had new ideas instead of copying and pasting the left hand. :)
+
 ### 2026-03-25
 I have been procrastinating fixing some of these things for way too long... And today is but a humble and incomplete attempt...
 

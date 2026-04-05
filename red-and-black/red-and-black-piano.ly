@@ -150,7 +150,7 @@ verseOneAfterRepeat-upper = \relative b' {
         {
             \voiceOne
             r8. \acciaccatura{e'8}eis16 e-. r16 d16-. r16
-            e8-. eis16-. e16-. r8 d8
+            <e e,>8-. <eis eis,>16-. <e e,>16-. r8 <d d,>8
         }
         \new Voice {
             \override TextScript.Y-offset = #-6
@@ -281,7 +281,7 @@ verseTwo-upper = \relative b' {
             \stemDown
             %%%%% CHANGED: slight harmony and voicing changes here %%%%%
             \tuplet 3/2 { <eis d gis,> <b' eis, d_~ b>\arpeggio-- <a d, a> }
-            \tuplet 3/2 { <eis-- d b eis,> <e b e,> <d d,> }
+            \tuplet 3/2 { <eis-- d b_~ eis,> <e b e,> <d d,> }
             |
             <fis d b fis>2_\markup{ \italic "m.s." }
             <e! cis ais e>4.
@@ -329,12 +329,19 @@ verseTwo-upper = \relative b' {
             \revert Fingering.direction
             |
             {
-                \override Rest.staff-position = #4
-                \override Script.Y-offset = 6
-                \override Script.X-offset = 1.2
-                r8. fis'8-> r16
-                \acciaccatura{d8 e} \tuplet 3/2 { eis4-- e-- d--~ }
-                d8
+                \once \override Rest.staff-position = #5
+                % \override Script.Y-offset = 6
+                % \override Script.X-offset = 1.2
+                \tupletUp \tuplet 3/2 { 
+                  r4 
+                  % \once \override Beam.stencil = #beam::slashed-stencil
+                  \acciaccatura{ d8 e } fis4_\staccato 
+                  <eis eis,>_\staccato 
+                }
+                \tupletUp \tuplet 3/2 { <e b e,>4_\staccato <d a d,>2 }
+                % r8. fis'8-> r16
+                % \acciaccatura{d8 e} \tuplet 3/2 { eis4-- e-- d--~ }
+                % d8
             }
         }
     >>  
@@ -394,7 +401,7 @@ verseTwo-lower = \relative b, {
     >>
     |
     % Phrase 2
-    <fis d fis,>2. <a cis, a>4
+    <fis, d fis,>2. <a cis, a>4
     |
     <gis eis d gis,>2
     \tuplet 3/2 { <d d,>4 <e e,> <fis~ fis,_~> }
@@ -415,7 +422,7 @@ verseTwo-lower = \relative b, {
 chorusOne-upper = \relative b' {
     % Phrase 1
     \once \override DynamicLineSpanner.staff-padding = #5
-    b8._~\f <fis'~ b,_~ fis_~>16 <fis b,_~ fis>4
+    <b d, b>8.\f <fis'~ b,_~ fis_~>16 <fis b,_~ fis>4
     \acciaccatura{\once \override Stem.direction = #UP e8} <eis b eis,>4 
     <cis gis eis cis>
     |
@@ -434,7 +441,7 @@ chorusOne-upper = \relative b' {
     |
     \acciaccatura{ais8} <b fis \tweak Parentheses.font-size -2 \parenthesize b,>4
     <e b e,>8 <d a d,>4
-    \acciaccatura{<ais' ais,>8} <b g b,>4
+    \acciaccatura{<ais' ais,>8} <b fis b,>4
     <fis fis,>8
     |
     <eis eis,>8. cis_~ <e cis e,>8
@@ -455,7 +462,7 @@ chorusOne-upper = \relative b' {
     q8 
     \once \override DynamicTextSpanner.font-size = 0
     \once \override Staff.DynamicLineSpanner.padding = 1.5
-    <d g, d>\cresc <fis fis,> <g b, g>
+    <d g, d>\cresc <fis a, fis> <g b, g>
     |
     \tuplet 3/2 { <ais cis, ais>4 <fis d fis,> <g e g,> }
     <e d e,>8. <fis~ cis~ fis,_~>16 q4\!
@@ -477,7 +484,7 @@ chorusOne-lower = \relative b, {
         \new Voice {
             \voiceTwo
             \once \stemUp
-            <d'' b fis d>2
+            <d'' fis, d>2
             \once \stemUp
             <cis gis cis,>2
         }
@@ -502,7 +509,7 @@ chorusOne-lower = \relative b, {
     >>
     |
     <g''~ cis, g_~>4. <g b, g>8
-    <fis~ fis,_~>8 <fis ais, fis>16 <d d,>8. <cis cis,>8->
+    <fis ais, fis>8 <e e,>16 <d d,>8. <cis cis,>8->
     |
     % Phrase 2
     <b fis b,>4.-> <fis' b,_~ fis>8
@@ -744,9 +751,9 @@ affettuoso-lower = \relative b {
             % Phrase 1
             s2 s4. 
             \ottava -1
-            b,,8~\pp
+            <b,, b,>8~\pp
             |
-            b2.
+            q2.
             \ottava 0
             ais''4-3
             |
@@ -757,9 +764,9 @@ affettuoso-lower = \relative b {
             f1
             |
             % Phrase 2
-            s2 s4. f,8~\pp
+            s2 s4. <f f,>8~\pp
             |
-            f2. e'4-5_(
+            q2. e4-5_(
             |
             \once \override TextScript.extra-offset = #'(0 . 2.5)
             f1_\markup{ \finger "4-5" }
@@ -989,7 +996,7 @@ chorusTwo-upper = \relative b' {
     |
     \acciaccatura{ais8} <b fis \tweak Parentheses.font-size -2 \parenthesize b,>4
     <e b e,>8 <d a d,>4
-    \acciaccatura{<ais' ais,>8} <b g b,>4
+    \acciaccatura{<ais' ais,>8} <b fis b,>4
     <fis fis,>8
     |
     <eis eis,>8. cis_~ <e cis e,>8
@@ -1001,10 +1008,10 @@ chorusTwo-upper = \relative b' {
     \revert TupletNumber.stencil
     \revert TupletBracket.stencil
     \revert Tie.direction
-    <b, b,>4 <fis' b, fis>
-    \tuplet 3/2 { <eis b eis,>4 <cis g cis,> <d b d,> }
+    <b, d, b>4 <fis' d b fis>
+    \tuplet 3/2 { <eis cis eis,>4 <cis cis,> <d d,> }
     |
-    \tuplet 3/2 { <e a,~ e> <fis a,~ fis> <e a, e> }
+    \tuplet 3/2 { <e cis~ ais~ e> <fis cis~ ais~ fis> <e cis ais e> }
     <d fis, d>8. <b b,>8
     \once \override Rest.staff-position = #0
     r16 <cis e,>8
@@ -1013,19 +1020,19 @@ chorusTwo-upper = \relative b' {
     q8 
     \once \override DynamicTextSpanner.font-size = 0
     \once \override Staff.DynamicLineSpanner.padding = 1.5
-    <d b d,>\cresc <fis d fis,> <g e g,>
+    <d b d,> <fis d fis,> <g e g,>
     |
     << 
         {
             \voiceOne
             \once \override TextScript.Y-offset = #8
-            \tuplet 3/2 { <ais ais,>4^\markup{ \italic "catartico" } <fis fis,> <g g,> }
-            <e e,>8. <fis~ fis,~>16 q4\!
+            \tuplet 3/2 { <ais ais,>4->^\markup{ \italic "catartico" } <fis fis,> <g g,> }
+            <e e,>8.-> <fis~ fis,~>16 q4\!
         }
 
         \new Voice {
             \voiceTwo
-            e2-> ais,->
+            <e cis>2 <cis ais>
         }
     >>
     |
@@ -1034,12 +1041,23 @@ chorusTwo-upper = \relative b' {
 chorusTwo-lower = \relative b, {
     % Phrase 1
     <b fis d b>4. <d fis, d>8
-    <cis gis cis,>2
+    \revert TupletNumber.stencil
+    \revert TupletBracket.stencil
+    <<
+      {
+        \voiceOne
+        \tuplet 3/2 { cis4 d4 dis4 }
+      }
+      \new Voice {
+        \voiceTwo
+        <cis gis eis cis>2
+      }
+    >>
     |
     <<
         {
             \voiceOne
-            <e~ g,~ e_~>4 <e cis g e>4 
+            <e~ cis g~ e_~>4 <e ais, g e>4 
             <fis d b fis>2
             |
             <b a d,>
@@ -1056,22 +1074,28 @@ chorusTwo-lower = \relative b, {
     >>
     |
     <g''~ cis, g_~>4. <g b, g>8
-    <fis~ fis,_~>8 <fis ais, fis>16 <d d,>8. <cis cis,>8->
+    <fis ais, fis>8 <e e,>16 <d d,>8. <cis cis,>8->
     |
     % Phrase 2
     \revert TupletNumber.stencil
     \revert TupletBracket.stencil
     \revert Tie.direction
-    <b fis d b>2->
-    \tuplet 3/2 { <d b d,>2 q4 }
+    \once \override DynamicLineSpanner.staff-padding = #4
+    <fis d b fis>2^\p
+    <gis eis cis gis>
     |
-    <cis a cis,>2 <b fis b,>
+    \slashedGrace ais,,8~ <ais'' e cis ais ais,>2^\markup{ \italic "cresc." }
+    \slashedGrace b,,8~ <b'' fis d b b,>2
     |
-    <cis g e cis>4.--_( <d~ fis,~ d~>8-- q2
+    \override Tie.minimum-length = #2.5
+    \slashedGrace { <cis,_~ g~ cis,~>8 } <cis' g e cis g cis,>4.--_( 
+    \slashedGrace { <d,_~ fis,~ d~>8 } <d'~ b fis~ d~ fis,~ d~>8-- q2
     |
-    <e ais, e>4.-- 
-    <fis ais, fis>2--) <fis fis,>8
+    % \once \override Tie.control-points = #'((0.5 . 1) (1 . 2) (2 . 2) (4 . 0.5))
+    \slashedGrace { <e,_~ ais,~ e~>8 } <e' cis ais e ais, e>4.--^\ff 
+    \slashedGrace { <e,_~ ais,~ fis~>8 } <fis' cis ais fis e ais, fis>2--) <fis, fis,>8
     |
+    \revert Tie.minimum-length
 }
 
 chorusThree-upper = \relative b' {
@@ -1103,11 +1127,12 @@ chorusThree-upper = \relative b' {
     \revert TupletNumber.stencil
     \revert TupletBracket.stencil
     \revert Tie.direction
-    <b, b,>4 <fis' b, fis>
+    <b, d, b>4 <fis' b, fis>
     \tuplet 3/2 { <eis b eis,>4 <cis g cis,> <d b d,> }
     |
-    \tuplet 3/2 { <e a,~ e> <fis a,~ fis> <e a, e> }
-    <d fis, d>8. <b b,>8
+    \tuplet 3/2 { <e ais,~ e> <fis ais, fis> <g cis, g> }
+    \once \override Script.direction = #DOWN
+    <fis d fis,>8.-- <b, b,>8
     \once \override Rest.staff-position = #0
     r16 <cis e,>8
     |
@@ -1119,7 +1144,7 @@ chorusThree-upper = \relative b' {
     |
     \stemDown
     \tuplet 3/2 { <a e cis a>4-> q4-> q4-> }
-    <ais e cis ais>2->\!
+    <ais g e cis ais>2->\!
     \stemNeutral
     |
 }
@@ -1127,41 +1152,35 @@ chorusThree-upper = \relative b' {
 chorusThree-lower = \relative b, {
     % Phrase 1
     \revert Tie.direction
-    <b fis d b>4. <d fis, d>8
-    <cis gis cis,>2
+    <b fis d b>4. <d b d,>8
+    <fis b, fis>4 <eis cis eis,>~
+    |
+    \tuplet 3/2 { q4 <fis d~ b~ fis> <g d b g> } 
+    <d b d,>4 <fis d fis,>4
+    |
+    <a e cis a>4. <b g d b>8~
+    q <a a,> <g g,> <fis fis,> 
+    |
+    <e ais,~ e>4. <eis ais, eis>8
+    <fis ais, fis>8. <cis cis,>8. <d d,>8
+    |
+    <b fis b,>2 <g' d b g>
     |
     <<
-        {
-            \voiceOne
-            <e cis g e>2--
-            <d b fis d>--
-            |
-            <a' e cis a>
-            <g d b g>
-        }
-
-        \new Voice {
-            \voiceTwo
-            s2 s4.
-            <b,,~ b,~>8
-            |
-            <b b,>2
-        }
+      \voiceOne {
+        \tuplet 3/2 { ais4 b cis }
+      }
+      \new Voice {
+        \voiceTwo
+        <fis, cis ais cis,>2\arpeggio
+      }
     >>
+    <d' b fis b,>2\arpeggio
     |
-    <g''~ cis, g_~>4. <g b, g>8
-    <fis ais, fis>8 <fis ais, fis>16 q8. <fis fis,>8
+    <e, cis g e>4. <fis d b fis>4. <e a, e>8 <g b, g>8
     |
-    <b, fis d b>2 
-    \tuplet 3/2 { <d b d,>2 <d g, d>4 }
-    |
-    <cis a cis,>2 <b fis b,>
-    |
-    <cis g e cis>4. <d b fis d>4.
-    <e cis e,>8 <fis d fis,>
-    |
-    \tuplet 3/2 { <a e cis a>4 q4 q4 }
-    <ais e cis ais>2
+    <a e cis a>2
+    <ais g e cis>2
     |
 }
 
